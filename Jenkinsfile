@@ -1,12 +1,18 @@
 #! /usr/bin/env groovy
 
 pipeline {
-
-  agent {
-    label 'maven'
-  }
+  agent any
+      tools {
+        maven "maven"
+    }
 
   stages {
+       stage('Initialize'){
+          steps{
+             echo "PATH = ${M2_HOME}/bin:${PATH}"
+             echo "M2_HOME = /opt/maven"
+            }
+        }
     stage('Build') {
       steps {
         echo 'Building..'
